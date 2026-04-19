@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire projet centre de formation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f7fb;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1ebe5d;
+    }
+
+    .note {
+      font-size: 13px;
+      color: gray;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>📋 Cahier de charges - Plateforme de formation</h2>
+
+  <label>Nom du centre</label>
+  <input type="text" id="centre">
+
+  <label>Nom du responsable</label>
+  <input type="text" id="nom">
+
+  <label>Contact WhatsApp</label>
+  <input type="text" id="contact">
+
+  <label>1. Objectif du site</label>
+  <textarea id="objectif" placeholder="Décris le but du site..."></textarea>
+
+  <label>2. Informations à collecter lors de l'inscription</label>
+  <textarea id="infos" placeholder="Ex: nom, prénom, téléphone, email, formation..."></textarea>
+
+  <label>3. Gestion des formations</label>
+  <textarea id="formations" placeholder="Ex: plusieurs formations, prix différents, durée..."></textarea>
+
+  <label>4. Mode de paiement souhaité</label>
+  <select id="paiement">
+    <option>Mobile Money</option>
+    <option>Carte bancaire</option>
+    <option>Virement bancaire</option>
+    <option>Paiement manuel (administrateur)</option>
+  </select>
+
+  <label>5. Paiement</label>
+  <select id="tranches">
+    <option>En une seule fois</option>
+    <option>En plusieurs tranches</option>
+  </select>
+
+  <label>6. Statuts étudiants souhaités</label>
+  <textarea id="statuts" placeholder="Ex: inscrit, en attente paiement, payé, validé, refusé"></textarea>
+
+  <label>7. Fonctionnalités admin</label>
+  <textarea id="admin" placeholder="Ex: voir étudiants, modifier statut, valider paiement, supprimer..."></textarea>
+
+  <label>8. Notifications souhaitées</label>
+  <select id="notif">
+    <option>Aucune</option>
+    <option>Email</option>
+    <option>Email + WhatsApp</option>
+  </select>
+
+  <label>9. Style du site</label>
+  <select id="design">
+    <option>Simple</option>
+    <option>Moderne</option>
+    <option>Très professionnel</option>
+  </select>
+
+  <label>10. Autres besoins</label>
+  <textarea id="autres"></textarea>
+
+  <button onclick="sendWhatsApp()">📲 Envoyer mes besoins</button>
+
+  <div class="note">
+    Tu seras redirigé vers WhatsApp avec toutes les informations.
+  </div>
+</div>
+
+<script>
+function sendWhatsApp() {
+
+  let msg =
+`📋 CAHIER DE BESOINS - CENTRE DE FORMATION
+
+🏫 Centre: ${centre.value}
+👤 Responsable: ${nom.value}
+📞 Contact: ${contact.value}
+
+🎯 Objectif:
+${objectif.value}
+
+🧾 Infos inscription:
+${infos.value}
+
+🎓 Formations:
+${formations.value}
+
+💳 Paiement: ${paiement.value}
+🔁 Paiement: ${tranches.value}
+
+📌 Statuts étudiants:
+${statuts.value}
+
+⚙️ Admin:
+${admin.value}
+
+🔔 Notifications: ${notif.value}
+🎨 Design: ${design.value}
+
+📝 Autres:
+${autres.value}`;
+
+  let number = "2290192262513"; // ton numéro WhatsApp ici
+  let url = "https://wa.me/" + number + "?text=" + encodeURIComponent(msg);
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
